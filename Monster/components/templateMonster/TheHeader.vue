@@ -20,7 +20,7 @@
 
 <script>
 
-    import AppLinks from '~/components/appLinks'
+    import AppLinks from './appLinks'
 export default {
     components: {
         AppLinks
