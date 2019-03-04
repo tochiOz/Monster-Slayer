@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the Post</h1>
+      <h1 class="post-title">{{ loadedPosts.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by NAME</div>
+        <div class="post-detail">{{ loadedPosts.updatedTime }}</div>
+        <div class="post-detail"> Written By:  {{ loadedPosts.author }}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{ loadedPosts.content }}</p>
     </section>
     <section class="post-feedback">
       <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
@@ -16,7 +16,27 @@
 
 <script>
 export default {
-  layout: 'blog'
+  layout: 'blog',
+
+   asyncData: function (context, callback) {//it works asychronously by fetching data from the serve side before the page is even loaded
+    //it only occurs(asyncData), when the page reloads or after routing to other pages and coming back to this page
+    console.log(context);
+    setTimeout(() => {// make sure to tell asyncdata is cancelled
+      callback(null, {// the null value in the arg, is the value to be displayed if the data isn't found
+        loadedPosts: [//this is loaded in server mode
+          {
+            id: "1",
+            thumbnail: "https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg",
+            title: "First Post (ID: " + context.params.id + ")",
+            author: 'Tochi',
+            content: 'This the Content of The Post',
+            updatedTime: new Date(),
+            previewText: "Hi!, This is my first post!"
+          }
+        ]
+      })
+    }, 2000)
+  }
 }
 </script>
 
