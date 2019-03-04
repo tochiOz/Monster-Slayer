@@ -1,5 +1,5 @@
 {
-  "name": "Monster",
+  "name": "nuxt-app",
   "version": "1.0.0",
   "description": "My ace Nuxt.js project",
   "author": "babatezz",
@@ -14,7 +14,7 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.3.4",
     "bootstrap-vue": "^2.0.0-rc.11",
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^4.3.1",
     "@nuxtjs/pwa": "^2.6.0"
   },
   "devDependencies": {
