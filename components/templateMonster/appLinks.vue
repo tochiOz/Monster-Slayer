@@ -2,6 +2,7 @@
     <ul class="nav-list">
         <li class="nav-item"><nuxt-link to="/">Home</nuxt-link></li>
         <li class="nav-item"><nuxt-link to="/about">Play Game</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/blog">Nuxt-Blog</nuxt-link></li>
     </ul>
 
 </template>
