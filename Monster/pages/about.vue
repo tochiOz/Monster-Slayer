@@ -238,5 +238,37 @@ export default {
     background-color: #ffc0c1;
   }
 
-</style>
+/* animations in vue are quite different cos they dont need enter or leave css classes*/
+  .slide-enter-active {
+    animation: slide-in 0.5s ease-in-out forwards;
+    opacity: 0.5;
+  }
 
+  .slide-leave-active {
+    animation: slide-out 0.5s ease-out forwards;
+    opacity: 0;
+    position: absolute;
+  }
+/* the slide-move option helps animation move swiftly, it aids when the index of an item in the array is to be replaced by another item */
+  .slide-move {
+      transition: transform 1s;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(25px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(20px);
+    }
+  }
+</style>
