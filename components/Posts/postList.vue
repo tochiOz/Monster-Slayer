@@ -18,6 +18,7 @@ export default {
   components: {
     PostPreview
   },
+  
   props: {
     isAdmin: {
       type: Boolean,
