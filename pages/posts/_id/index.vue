@@ -1,94 +1,54 @@
 <template>
-  <div class="single-post-page">
-    <section class="post">
-      <h1 class="post-title">{{ loadedPost.title }}</h1>
-      <div class="post-details">
-        <div class="post-detail">{{ loadedPost.updatedTime }}</div>
-        <div class="post-detail"> Written By:  {{ loadedPost.author }}</div>
+  <div>
+    <div class="container">
+      <div class="row">
+        <b-card 
+          class="col-md-12 col-sm-12 col-xs-12 mb-5 shadow px-0"
+          img-alt="Image"
+          img-top
+          tag="article"
+          style="width: 100%">
+          <b-card-header class="text-center">
+            <img :src="loadedPost.thumbnail" 
+              alt="Better Show"
+              class="image-responsive mb-5"
+              style="max-width: 100%; height: 400px;">
+            <h1 class="text-center">{{ loadedPost.title }}</h1>
+            <hr>
+          </b-card-header>
+          <p class="text-center text-danger mb-12"><em>{{ loadedPost.updatedDate }}/ Written By: {{ loadedPost.author }}</em></p>
+          <div class="row">
+            <h6><Strong class="text-center mt-2 text-secondary mx-5">{{ loadedPost.previewText }}</Strong></h6>
+          </div>
+          <div class="container my-4 mx-5">
+            <p class="post-content">{{ loadedPost.content }}</p>
+          </div>
+        </b-card>
       </div>
-      <p class="post-content">{{ loadedPost.content }}</p>
-    </section>
-    <section class="post-feedback">
-      <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
-    </section>
+    
+      <section class="post-feedback text-center">
+        <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
+      </section> 
+    </div>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   layout: 'blog',
 
-   asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: "1",
-          title: "First Post (ID: " + context.route.params.id + ")",
-          previewText: "This is our first post!",
-          author: 'Maximilian',
-          updatedDate: new Date(),
-          content: 'Some dummy text which is definitely not the preview text though!',
-          thumbnail:
-            "https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg"
+  asyncData(context) {
+    return axios.get('https://nuxt-training-79a71.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
         }
-      });
-    }, 1000);
+      })
+      .catch(e => context.error(e))
   }
 }
 </script>
-
-
-<style scoped>
-.single-post-page {
-  padding: 30px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.post {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .post {
-    width: 600px;
-    margin: auto;
-  }
-}
-
-.post-title {
-  margin: 0;
-}
-
-.post-details {
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 3px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .post-details {
-    flex-direction: row;
-  }
-}
-
-.post-detail {
-  color: rgb(88, 88, 88);
-  margin: 0 10px;
-}
-
-.post-feedback a {
-  color: red;
-  text-decoration: none;
-}
-
-.post-feedback a:hover,
-.post-feedback a:active {
-  color: salmon;
-}
-</style>
 

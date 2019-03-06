@@ -5,7 +5,7 @@
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
-      <PostList isAdmin />
+      <PostList isAdmin :posts="loadedPosts"/>
     </section>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 import PostList from '@/components/Posts/postList'
 import AppButton from '@/components/UI/appButton'
+import axios from 'axios'
 
 export default {
   components: {
@@ -20,7 +21,23 @@ export default {
     AppButton
   },
 
-  layout: 'blog'  
+  layout: 'blog',
+
+  //  asyncData(context) {
+  //     return axios.get('https://nuxt-training-79a71.firebaseio.com/posts/' + context.params.id + '.json')
+  //     .then(res => {
+  //       return {
+  //         loadedPost: res.data
+  //       }
+  //     })
+  //     .catch(e => context.error(e))
+  // }
+
+  computed:{
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
+  }
 }
 </script>
 

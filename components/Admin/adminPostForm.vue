@@ -3,17 +3,23 @@
     <b-jumbotron class="container" header="Create A Blog" >
       <form 
         class="flex justify-center align-items-center form-group" 
-        @click.prevent="savePost">
+        >
         <AppControlInput 
           v-model="editedPost.author"><h3>Author Name:</h3></AppControlInput>
         <AppControlInput 
           v-model="editedPost.title"><h3>Title:</h3></AppControlInput>
         <AppControlInput 
-          v-model="editedPost.thumbnailLink"><h3>Thumbnail Link:</h3></AppControlInput>
+          v-model="editedPost.thumbnail"><h3>Thumbnail Link:</h3></AppControlInput>
         <AppControlInput 
           v-model="editedPost.content"
           control-type="textarea"><h3>Content</h3></AppControlInput>
-          <AppButton type="submit" class="btn btn-success">Save </AppButton>
+        <AppControlInput 
+          v-model="editedPost.previewText"
+          control-type="textarea"><h3>Preview Text</h3></AppControlInput>
+          <AppButton 
+            type="submit" 
+            class="btn btn-success"
+            @click.prevent="savePost">Save </AppButton>
         <AppButton
           type="button"
           class="ml-20 btn btn-md"
@@ -49,15 +55,16 @@ export default {
       {
         author: '',
         title: '',
-        thumbnailLink: '',
-        content: ''
+        thumbnail: '',
+        content: '',
+        previewText: ''
       }
     }
   },
 
   methods: {
     savePost() {
-      console.log(this.editedPost)
+      return this.$emit('submit', this.editedPost)
     },
 
     cancelForm() {

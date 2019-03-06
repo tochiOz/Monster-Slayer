@@ -3,8 +3,15 @@
     <b-jumbotron class="shadow drop" header="Building Blog with Nuxt Routing Communication" lead="A Game built with vue.js, by which each feature/round of the web page move according to clicks and gives a log of the information" >
       <p>Get the latest tech news!!!!!</p>
       <b-btn variant="info" href="/postBlog">See More</b-btn>
-      <PostList :posts =  "loadedPosts" />
     </b-jumbotron>
+
+    <div >
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <PostList :posts =  "loadedPosts" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
