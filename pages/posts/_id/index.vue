@@ -16,7 +16,7 @@
             <h1 class="text-center">{{ loadedPost.title }}</h1>
             <hr>
           </b-card-header>
-          <p class="text-center text-danger mb-12"><em>{{ loadedPost.updatedDate }}/ Written By: {{ loadedPost.author }}</em></p>
+          <p class="text-center text-danger mb-12"><em>{{ loadedPost.updatedDate | date }}/ Written By: {{ loadedPost.author }}</em></p>
           <div class="row">
             <h6><Strong class="text-center mt-2 text-secondary mx-5">{{ loadedPost.previewText }}</Strong></h6>
           </div>
