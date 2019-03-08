@@ -8,7 +8,7 @@
 <style scoped>
   .back{
     background-image: url(https://i.pinimg.com/originals/1f/50/3f/1f503fcfd14bc5367f656a145975eeec.jpg);
-    background-position-x: -200px;
-    background-position-y: -100px;
+    background-position-x: -400px;
+    background-position-y: -250px;
   }
 </style>

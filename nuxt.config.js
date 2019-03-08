@@ -1,6 +1,5 @@
 const pkg = require('./package')
 
-
 module.exports = {
   mode: 'universal',
 
@@ -23,7 +22,17 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { 
+    color: '#fa923f', 
+    height: '4px', 
+    duration: 5000 
+  },
+
+  // loadingIndicator: {
+  //   name: 'circle',
+  //   color: '#fa923f',
+  //   duration: 3000
+  // },
 
   /*
   ** Global CSS
@@ -33,14 +42,18 @@ module.exports = {
 
   /*
   ** Plugins to load before mounting the App
+    to load some crazy functionalities, used to plug functionalities.
   */
   plugins: [
+    //plugins can help in bring in global script that can be used in our app/single component
+    '~plugins/date-filter.js'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [,
+    //modules allows you to add external packages which can be added into nuxt as modules.
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa'
@@ -56,5 +69,22 @@ module.exports = {
     extend(config, ctx) {
       
     }
+  },
+
+  router: {
+    // extendRoutes (routes, resolve) {// it ensures that it routes pages back to the index.vue file as soon as  
+    //   //we route to an unindentified page/component
+    //   routes.push({
+    //     path: '*',
+    //     component: resolve(__dirname, 'pages/index.vue')
+    //   })
+    // },
+    linkActiveClass: 'active'
+  },
+
+  transistion: {
+    //a means of using animations within the page
+    name: 'page',
+    mode: 'out-in'
   }
 }
