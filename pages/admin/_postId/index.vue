@@ -16,6 +16,8 @@ export default {
     AdminPostForm
   },
 
+  middleware: ['check-auth','auth'],
+
   layout: 'blog',
 
   asyncData(context) {
