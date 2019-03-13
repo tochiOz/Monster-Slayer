@@ -2,9 +2,9 @@
   <div class="admin-auth-page">
     <div class="auth-container">
       <b-jumbotron class="container" header="Create An Acount" >
-        <form>
-          <AppControlInput type="email"><h3>E-Mail Address</h3></AppControlInput>
-          <AppControlInput type="password"><h3>Password</h3></AppControlInput>
+        <form @submit.prevent="onSubmit">
+          <AppControlInput type="email" v-model="email"><h3>E-Mail Address</h3></AppControlInput>
+          <AppControlInput type="password" v-model="password"><h3>Password</h3></AppControlInput>
           <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
           <AppButton
             type="button"
@@ -20,21 +20,38 @@
 <script>
 import AppControlInput from '@/components/UI/appControlInput'
 import AppButton from '@/components/UI/appButton'
+import axios from 'axios'
 
 export default {
   name: 'adminAuthPage',
+
+  data() {
+    return {
+      isLogin: true,
+      email: '',
+      password: ''
+    }
+  },
+
   components: {
     AppControlInput,
     AppButton
   },
 
   layout: 'blog',
-  
-  data() {
-    return {
-      isLogin: true
+
+  methods: {
+    onSubmit () {
+      this.$store.dispatch('authenticateUser', {
+        email: this.email,
+        password: this.password,
+        isLogin: this.isLogin
+      }).then(() => {
+        this.$router.push('/admin')
+      })
     }
   }
+  
 }
 </script>
 

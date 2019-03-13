@@ -13,6 +13,8 @@ export default {
     AdminPostForm
   },
 
+  middleware: ['check-auth','auth'],
+
   layout: 'blog'  ,
 
   methods: {
