@@ -95,6 +95,7 @@ export const actions = {//spread operator is used to pull out al data in an obje
         //also  its expiring date
         // cookie.set('expirationDate', new Date().getTime() + res.data.expiresIn * 1000)
         // vuexContext.dispatch('setLogoutTimer', res.data.expiresIn * 1000)
+        return axios.post('http://localhost:3000/api/track-data', { data: 'Authenticated!!!' })
       })
       .catch(e => console.log(e))
     },
@@ -133,7 +134,7 @@ export const actions = {//spread operator is used to pull out al data in an obje
       }
     }
 }
-
+//nuxt is there to give a universal mode of vue pages
 
 export const getters = {
     loadedPosts: state => state.loadedPosts,

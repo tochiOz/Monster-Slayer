@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const bodyParser = require('body-parser')
 
 module.exports = {
   mode: 'universal',
@@ -86,5 +87,12 @@ module.exports = {
     //a means of using animations within the page
     name: 'page',
     mode: 'out-in'
-  }
+  },
+
+  //importing the server side of nuxt using express
+  serverMiddleware: [
+    //body parser parser's the incoming json file, more like convert thems and aadd them to the incoming data
+    bodyParser.json(),
+    '~/api'
+  ]
 }
