@@ -22,6 +22,7 @@ import AppControlInput from '@/components/UI/appControlInput'
 import AppButton from '@/components/UI/appButton'
 import axios from 'axios'
 
+
 export default {
   name: 'adminAuthPage',
 
@@ -51,7 +52,7 @@ export default {
       })
     }
   }
-  
+
 }
 </script>
 
@@ -61,7 +62,7 @@ export default {
 }
 
 .auth-container {
-  border: 1px solid rgb(89, 4, 247);
+  /* border: 1px solid rgb(89, 4, 247); */
   border-radius: 5px;
   box-shadow: 0 2px 2px #ccc;
   width: 500px;
