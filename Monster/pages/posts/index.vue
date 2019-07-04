@@ -1,6 +1,8 @@
 <template>
   <div class="posts-page">
-    <PostList />
+    <PostList 
+      :posts = "loadedPosts"
+      class="pb-3" />
   </div>
 </template>
 
@@ -12,7 +14,13 @@ export default {
     PostList
   },
 
-  layout: 'blog'  
+  layout: 'blog' ,
+  
+  computed: {
+    loadedPosts () {
+      return this.$store.getters.loadedPosts
+    }
+  }
 }
 </script>
 

@@ -2,10 +2,11 @@
   <div class="admin-page">
     <section class="new-post">
       <AppButton @click="$router.push('/admin/new-post')">Create Post</AppButton>
+      <AppButton @click.prevent="logOut">Logout</AppButton>
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
-      <PostList isAdmin />
+      <PostList isAdmin :posts="loadedPosts"/>
     </section>
   </div>
 </template>
@@ -13,6 +14,7 @@
 <script>
 import PostList from '@/components/Posts/postList'
 import AppButton from '@/components/UI/appButton'
+import axios from 'axios'
 
 export default {
   components: {
@@ -20,7 +22,32 @@ export default {
     AppButton
   },
 
-  layout: 'blog'  
+  middleware: ['check-auth','auth'],
+
+  layout: 'blog',
+
+  //  asyncData(context) {
+  //     return axios.get('https://nuxt-training-79a71.firebaseio.com/posts/' + context.params.id + '.json')
+  //     .then(res => {
+  //       return {
+  //         loadedPost: res.data
+  //       }
+  //     })
+  //     .catch(e => context.error(e))
+  // },
+
+  methods: {
+    logOut() {
+      this.$store.dispatch('onLogout')
+      this.$router.push('/admin/auth')
+    }
+  },
+
+  computed:{
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
+  }
 }
 </script>
 
